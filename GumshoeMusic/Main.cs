@@ -4,6 +4,7 @@ using System.IO;
 using System.Linq;
 using System.Text.RegularExpressions;
 using System.Windows.Forms;
+using BrightIdeasSoftware;
 
 namespace GumshoeMusic
 {
@@ -11,6 +12,7 @@ namespace GumshoeMusic
     {
         private static bool _gigabytes;
         private string _devicePath;
+        private Settings _settings;
         public Main()
         {
             InitializeComponent();
@@ -30,18 +32,29 @@ namespace GumshoeMusic
 
         private void PopulateMusic()
         {
-            var ttrue = true;
-            if (!Directory.Exists(_devicePath + "MUSIC")) return;
-            musicObjectListView.SetObjects(olvMusic.GetMusic());
-            //foreach (var dir in Directory.EnumerateDirectories(_devicePath + "MUSIC"))
-            //{
-                
-            //    //foreach (var file in Directory.EnumerateFiles(dir))
-            //    //{
-            //    //    if (ttrue)musicObjectListView.Items.Add(dir, file, dir);
-            //    //    ttrue = false;
-            //    //}
-            //}
+            var musicFolder = Properties.Settings.Default.folderName;
+            if (!Directory.Exists(_devicePath + musicFolder)) return;
+            var musicList = new Dictionary<olvMusic, OLVGroup>();
+            var group = new OLVGroup("TEST");
+            foreach (var dir in Directory.EnumerateDirectories(_devicePath + musicFolder))
+            {
+                foreach (var file in Directory.EnumerateFiles(dir))
+                {
+                    if (!IsMediaFile(file)) continue;
+                    var tagFile = TagLib.File.Create(file);
+                    var item = new olvMusic(tagFile.Tag.Title, tagFile.Tag.FirstAlbumArtist, tagFile.Tag.Album);
+                    if (item.Title != null) musicList.Add(item, group);
+                }
+            }
+            musicObjectListView.SetObjects(musicList.Keys);
+            musicObjectListView.Sort(olvAlbum);
+        }
+
+        private static bool IsMediaFile(string path)
+        {
+            string[] mediaExtensions ={ ".WAV", ".MID", ".MIDI", ".WMA", ".MP3", ".OGG", ".FLAC" };
+            var fileExtension = Path.GetExtension(path);
+            return fileExtension != null && mediaExtensions.Contains(fileExtension, StringComparer.OrdinalIgnoreCase);
         }
 
         static Int32 BytesToMegabytes(long bytes)
@@ -69,6 +82,22 @@ namespace GumshoeMusic
         {
             _devicePath = deviceComboBox.Text.Split(new[] { '(', ')' })[1];
             PopulateMusic();
+        }
+
+        private void settingsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (_settings != null && _settings.Visible)
+            {
+                _settings.Focus();
+                System.Media.SystemSounds.Hand.Play();
+            }
+            else
+            {
+                _settings = new Settings();
+                _settings.FormClosed += (o, ea) => _settings = null;
+                _settings.Show();
+
+            }
         }
     }
 }

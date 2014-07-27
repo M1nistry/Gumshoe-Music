@@ -43,6 +43,9 @@
             this.refreshDevice = new System.Windows.Forms.Button();
             this.olvTitle = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
             this.olvArtist = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
+            this.olvAlbum = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
+            this.toolStripTools = new System.Windows.Forms.ToolStripMenuItem();
+            this.settingsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.musicObjectListView)).BeginInit();
             this.tabControl.SuspendLayout();
             this.musicTabPage.SuspendLayout();
@@ -73,10 +76,12 @@
             // 
             this.musicObjectListView.AllColumns.Add(this.olvTitle);
             this.musicObjectListView.AllColumns.Add(this.olvArtist);
+            this.musicObjectListView.AllColumns.Add(this.olvAlbum);
             this.musicObjectListView.CheckBoxes = true;
             this.musicObjectListView.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.olvTitle,
-            this.olvArtist});
+            this.olvArtist,
+            this.olvAlbum});
             this.musicObjectListView.Dock = System.Windows.Forms.DockStyle.Fill;
             this.musicObjectListView.Location = new System.Drawing.Point(3, 3);
             this.musicObjectListView.Name = "musicObjectListView";
@@ -152,7 +157,8 @@
             // 
             this.menuStrip.BackColor = System.Drawing.Color.Transparent;
             this.menuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.fileToolStripMenuItem});
+            this.fileToolStripMenuItem,
+            this.toolStripTools});
             this.menuStrip.Location = new System.Drawing.Point(0, 0);
             this.menuStrip.Name = "menuStrip";
             this.menuStrip.Size = new System.Drawing.Size(326, 24);
@@ -179,6 +185,7 @@
             // 
             this.olvTitle.AspectName = "Title";
             this.olvTitle.CellPadding = null;
+            this.olvTitle.FillsFreeSpace = true;
             this.olvTitle.Text = "Title";
             this.olvTitle.Width = 150;
             // 
@@ -188,6 +195,30 @@
             this.olvArtist.CellPadding = null;
             this.olvArtist.Text = "Artist";
             this.olvArtist.Width = 130;
+            // 
+            // olvAlbum
+            // 
+            this.olvAlbum.AspectName = "Album";
+            this.olvAlbum.CellPadding = null;
+            this.olvAlbum.MaximumWidth = 0;
+            this.olvAlbum.MinimumWidth = 0;
+            this.olvAlbum.Text = "Album";
+            this.olvAlbum.Width = 0;
+            // 
+            // toolStripTools
+            // 
+            this.toolStripTools.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.settingsToolStripMenuItem});
+            this.toolStripTools.Name = "toolStripTools";
+            this.toolStripTools.Size = new System.Drawing.Size(48, 20);
+            this.toolStripTools.Text = "Tools";
+            // 
+            // settingsToolStripMenuItem
+            // 
+            this.settingsToolStripMenuItem.Name = "settingsToolStripMenuItem";
+            this.settingsToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.settingsToolStripMenuItem.Text = "Settings";
+            this.settingsToolStripMenuItem.Click += new System.EventHandler(this.settingsToolStripMenuItem_Click);
             // 
             // Main
             // 
@@ -232,6 +263,9 @@
         private System.Windows.Forms.Button refreshDevice;
         private BrightIdeasSoftware.OLVColumn olvTitle;
         private BrightIdeasSoftware.OLVColumn olvArtist;
+        private BrightIdeasSoftware.OLVColumn olvAlbum;
+        private System.Windows.Forms.ToolStripMenuItem toolStripTools;
+        private System.Windows.Forms.ToolStripMenuItem settingsToolStripMenuItem;
     }
 }
 
