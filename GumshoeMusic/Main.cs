@@ -2,9 +2,8 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Text.RegularExpressions;
 using System.Windows.Forms;
-using BrightIdeasSoftware;
+using SharpShell;
 
 namespace GumshoeMusic
 {
@@ -13,10 +12,24 @@ namespace GumshoeMusic
         private static bool _gigabytes;
         private string _devicePath;
         private Settings _settings;
+        private static Main _mainSingleton;
+
         public Main()
         {
             InitializeComponent();
+            if (_mainSingleton == null)  _mainSingleton = this;
+
             PopulateDrives();
+        }
+
+        public static Main GetSingleton()
+        {
+            return _mainSingleton;
+        }
+
+        public void AddSync()
+        {
+            MessageBox.Show(@"We can reference!");
         }
 
         private void PopulateDrives()
@@ -34,8 +47,7 @@ namespace GumshoeMusic
         {
             var musicFolder = Properties.Settings.Default.folderName;
             if (!Directory.Exists(_devicePath + musicFolder)) return;
-            var musicList = new Dictionary<olvMusic, OLVGroup>();
-            var group = new OLVGroup("TEST");
+            var musicList = new List<olvMusic>();
             foreach (var dir in Directory.EnumerateDirectories(_devicePath + musicFolder))
             {
                 foreach (var file in Directory.EnumerateFiles(dir))
@@ -43,10 +55,10 @@ namespace GumshoeMusic
                     if (!IsMediaFile(file)) continue;
                     var tagFile = TagLib.File.Create(file);
                     var item = new olvMusic(tagFile.Tag.Title, tagFile.Tag.FirstAlbumArtist, tagFile.Tag.Album);
-                    if (item.Title != null) musicList.Add(item, group);
+                    if (item.Title != null) musicList.Add(item);
                 }
             }
-            musicObjectListView.SetObjects(musicList.Keys);
+            musicObjectListView.SetObjects(musicList);
             musicObjectListView.Sort(olvAlbum);
         }
 
@@ -98,6 +110,11 @@ namespace GumshoeMusic
                 _settings.Show();
 
             }
+        }
+
+        private void Main_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            
         }
     }
 }

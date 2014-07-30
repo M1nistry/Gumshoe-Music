@@ -46,12 +46,13 @@
             // 
             this.folderNameTextBox.Location = new System.Drawing.Point(88, 17);
             this.folderNameTextBox.Name = "folderNameTextBox";
-            this.folderNameTextBox.Size = new System.Drawing.Size(100, 20);
+            this.folderNameTextBox.Size = new System.Drawing.Size(139, 20);
             this.folderNameTextBox.TabIndex = 1;
             // 
             // saveButton
             // 
-            this.saveButton.Location = new System.Drawing.Point(201, 230);
+            this.saveButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.saveButton.Location = new System.Drawing.Point(152, 103);
             this.saveButton.Name = "saveButton";
             this.saveButton.Size = new System.Drawing.Size(75, 23);
             this.saveButton.TabIndex = 2;
@@ -63,7 +64,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(288, 265);
+            this.ClientSize = new System.Drawing.Size(239, 138);
             this.Controls.Add(this.saveButton);
             this.Controls.Add(this.folderNameTextBox);
             this.Controls.Add(this.folderLabel);

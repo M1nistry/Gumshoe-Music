@@ -5,6 +5,8 @@ VisualStudioVersion = 12.0.30501.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GumshoeMusic", "GumshoeMusic\GumshoeMusic.csproj", "{12500F2F-7BB9-4C1D-B3FE-F744527E8F73}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "QueueSync", "..\QueueSync\QueueSync\QueueSync.csproj", "{9B762A7E-4873-4F55-AF41-9E41F9A4F5FB}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{12500F2F-7BB9-4C1D-B3FE-F744527E8F73}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{12500F2F-7BB9-4C1D-B3FE-F744527E8F73}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{12500F2F-7BB9-4C1D-B3FE-F744527E8F73}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9B762A7E-4873-4F55-AF41-9E41F9A4F5FB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9B762A7E-4873-4F55-AF41-9E41F9A4F5FB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9B762A7E-4873-4F55-AF41-9E41F9A4F5FB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9B762A7E-4873-4F55-AF41-9E41F9A4F5FB}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
