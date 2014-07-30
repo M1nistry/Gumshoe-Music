@@ -33,25 +33,32 @@
             this.deviceLabel = new System.Windows.Forms.Label();
             this.deviceComboBox = new System.Windows.Forms.ComboBox();
             this.musicObjectListView = new BrightIdeasSoftware.ObjectListView();
+            this.olvTitle = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
+            this.olvArtist = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
+            this.olvAlbum = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
             this.tabControl = new System.Windows.Forms.TabControl();
             this.musicTabPage = new System.Windows.Forms.TabPage();
             this.syncTabPage = new System.Windows.Forms.TabPage();
+            this.syncStatus = new System.Windows.Forms.Label();
             this.statusStrip = new System.Windows.Forms.StatusStrip();
             this.toolStripStatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
             this.toolStripSpacer = new System.Windows.Forms.ToolStripStatusLabel();
             this.toolStripProgressBar = new System.Windows.Forms.ToolStripProgressBar();
             this.menuStrip = new System.Windows.Forms.MenuStrip();
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.refreshDevice = new System.Windows.Forms.Button();
-            this.olvTitle = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
-            this.olvArtist = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
-            this.olvAlbum = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
             this.toolStripTools = new System.Windows.Forms.ToolStripMenuItem();
             this.settingsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.syncStatus = new System.Windows.Forms.Label();
+            this.refreshDevice = new System.Windows.Forms.Button();
             this.notifyIcon = new System.Windows.Forms.NotifyIcon(this.components);
             this.notifyContextMenu = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.tagTabPage = new System.Windows.Forms.TabPage();
+            this.objectListView1 = new BrightIdeasSoftware.ObjectListView();
+            this.olvColumn1 = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
+            this.olvColumn2 = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
+            this.olvColumn3 = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
+            this.formatTextBox = new System.Windows.Forms.TextBox();
+            this.formatLabel = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.musicObjectListView)).BeginInit();
             this.tabControl.SuspendLayout();
             this.musicTabPage.SuspendLayout();
@@ -59,6 +66,8 @@
             this.statusStrip.SuspendLayout();
             this.menuStrip.SuspendLayout();
             this.notifyContextMenu.SuspendLayout();
+            this.tagTabPage.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.objectListView1)).BeginInit();
             this.SuspendLayout();
             // 
             // deviceLabel
@@ -98,6 +107,30 @@
             this.musicObjectListView.UseCompatibleStateImageBehavior = false;
             this.musicObjectListView.View = System.Windows.Forms.View.Details;
             // 
+            // olvTitle
+            // 
+            this.olvTitle.AspectName = "Title";
+            this.olvTitle.CellPadding = null;
+            this.olvTitle.FillsFreeSpace = true;
+            this.olvTitle.Text = "Title";
+            this.olvTitle.Width = 150;
+            // 
+            // olvArtist
+            // 
+            this.olvArtist.AspectName = "Artist";
+            this.olvArtist.CellPadding = null;
+            this.olvArtist.Text = "Artist";
+            this.olvArtist.Width = 130;
+            // 
+            // olvAlbum
+            // 
+            this.olvAlbum.AspectName = "Album";
+            this.olvAlbum.CellPadding = null;
+            this.olvAlbum.MaximumWidth = 0;
+            this.olvAlbum.MinimumWidth = 0;
+            this.olvAlbum.Text = "Album";
+            this.olvAlbum.Width = 0;
+            // 
             // tabControl
             // 
             this.tabControl.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
@@ -105,6 +138,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.tabControl.Controls.Add(this.musicTabPage);
             this.tabControl.Controls.Add(this.syncTabPage);
+            this.tabControl.Controls.Add(this.tagTabPage);
             this.tabControl.Location = new System.Drawing.Point(12, 52);
             this.tabControl.Name = "tabControl";
             this.tabControl.SelectedIndex = 0;
@@ -124,6 +158,7 @@
             // 
             // syncTabPage
             // 
+            this.syncTabPage.Controls.Add(this.objectListView1);
             this.syncTabPage.Controls.Add(this.syncStatus);
             this.syncTabPage.Location = new System.Drawing.Point(4, 22);
             this.syncTabPage.Name = "syncTabPage";
@@ -132,6 +167,15 @@
             this.syncTabPage.TabIndex = 1;
             this.syncTabPage.Text = "Sync";
             this.syncTabPage.UseVisualStyleBackColor = true;
+            // 
+            // syncStatus
+            // 
+            this.syncStatus.AutoSize = true;
+            this.syncStatus.Location = new System.Drawing.Point(47, 16);
+            this.syncStatus.Name = "syncStatus";
+            this.syncStatus.Size = new System.Drawing.Size(191, 13);
+            this.syncStatus.TabIndex = 0;
+            this.syncStatus.Text = "There are {0} files waiting to be synced";
             // 
             // statusStrip
             // 
@@ -181,40 +225,6 @@
             this.fileToolStripMenuItem.Size = new System.Drawing.Size(37, 20);
             this.fileToolStripMenuItem.Text = "File";
             // 
-            // refreshDevice
-            // 
-            this.refreshDevice.Location = new System.Drawing.Point(285, 25);
-            this.refreshDevice.Name = "refreshDevice";
-            this.refreshDevice.Size = new System.Drawing.Size(24, 21);
-            this.refreshDevice.TabIndex = 6;
-            this.refreshDevice.Text = "↻";
-            this.refreshDevice.UseVisualStyleBackColor = true;
-            this.refreshDevice.Click += new System.EventHandler(this.refreshDevice_Click);
-            // 
-            // olvTitle
-            // 
-            this.olvTitle.AspectName = "Title";
-            this.olvTitle.CellPadding = null;
-            this.olvTitle.FillsFreeSpace = true;
-            this.olvTitle.Text = "Title";
-            this.olvTitle.Width = 150;
-            // 
-            // olvArtist
-            // 
-            this.olvArtist.AspectName = "Artist";
-            this.olvArtist.CellPadding = null;
-            this.olvArtist.Text = "Artist";
-            this.olvArtist.Width = 130;
-            // 
-            // olvAlbum
-            // 
-            this.olvAlbum.AspectName = "Album";
-            this.olvAlbum.CellPadding = null;
-            this.olvAlbum.MaximumWidth = 0;
-            this.olvAlbum.MinimumWidth = 0;
-            this.olvAlbum.Text = "Album";
-            this.olvAlbum.Width = 0;
-            // 
             // toolStripTools
             // 
             this.toolStripTools.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -230,14 +240,15 @@
             this.settingsToolStripMenuItem.Text = "Settings";
             this.settingsToolStripMenuItem.Click += new System.EventHandler(this.settingsToolStripMenuItem_Click);
             // 
-            // syncStatus
+            // refreshDevice
             // 
-            this.syncStatus.AutoSize = true;
-            this.syncStatus.Location = new System.Drawing.Point(47, 16);
-            this.syncStatus.Name = "syncStatus";
-            this.syncStatus.Size = new System.Drawing.Size(191, 13);
-            this.syncStatus.TabIndex = 0;
-            this.syncStatus.Text = "There are {0} files waiting to be synced";
+            this.refreshDevice.Location = new System.Drawing.Point(285, 25);
+            this.refreshDevice.Name = "refreshDevice";
+            this.refreshDevice.Size = new System.Drawing.Size(24, 21);
+            this.refreshDevice.TabIndex = 6;
+            this.refreshDevice.Text = "↻";
+            this.refreshDevice.UseVisualStyleBackColor = true;
+            this.refreshDevice.Click += new System.EventHandler(this.refreshDevice_Click);
             // 
             // notifyIcon
             // 
@@ -259,6 +270,76 @@
             this.exitToolStripMenuItem.Size = new System.Drawing.Size(92, 22);
             this.exitToolStripMenuItem.Text = "Exit";
             // 
+            // tagTabPage
+            // 
+            this.tagTabPage.Controls.Add(this.formatLabel);
+            this.tagTabPage.Controls.Add(this.formatTextBox);
+            this.tagTabPage.Location = new System.Drawing.Point(4, 22);
+            this.tagTabPage.Name = "tagTabPage";
+            this.tagTabPage.Padding = new System.Windows.Forms.Padding(3);
+            this.tagTabPage.Size = new System.Drawing.Size(294, 405);
+            this.tagTabPage.TabIndex = 2;
+            this.tagTabPage.Text = "Tags";
+            this.tagTabPage.UseVisualStyleBackColor = true;
+            // 
+            // objectListView1
+            // 
+            this.objectListView1.AllColumns.Add(this.olvColumn1);
+            this.objectListView1.AllColumns.Add(this.olvColumn2);
+            this.objectListView1.AllColumns.Add(this.olvColumn3);
+            this.objectListView1.CheckBoxes = true;
+            this.objectListView1.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.olvColumn1,
+            this.olvColumn2,
+            this.olvColumn3});
+            this.objectListView1.Location = new System.Drawing.Point(0, 35);
+            this.objectListView1.Name = "objectListView1";
+            this.objectListView1.Size = new System.Drawing.Size(294, 260);
+            this.objectListView1.TabIndex = 3;
+            this.objectListView1.UseCompatibleStateImageBehavior = false;
+            this.objectListView1.View = System.Windows.Forms.View.Details;
+            // 
+            // olvColumn1
+            // 
+            this.olvColumn1.AspectName = "Title";
+            this.olvColumn1.CellPadding = null;
+            this.olvColumn1.FillsFreeSpace = true;
+            this.olvColumn1.Text = "Title";
+            this.olvColumn1.Width = 150;
+            // 
+            // olvColumn2
+            // 
+            this.olvColumn2.AspectName = "Artist";
+            this.olvColumn2.CellPadding = null;
+            this.olvColumn2.Text = "Artist";
+            this.olvColumn2.Width = 130;
+            // 
+            // olvColumn3
+            // 
+            this.olvColumn3.AspectName = "Album";
+            this.olvColumn3.CellPadding = null;
+            this.olvColumn3.MaximumWidth = 0;
+            this.olvColumn3.MinimumWidth = 0;
+            this.olvColumn3.Text = "Album";
+            this.olvColumn3.Width = 0;
+            // 
+            // formatTextBox
+            // 
+            this.formatTextBox.Location = new System.Drawing.Point(49, 282);
+            this.formatTextBox.Name = "formatTextBox";
+            this.formatTextBox.Size = new System.Drawing.Size(146, 20);
+            this.formatTextBox.TabIndex = 0;
+            this.formatTextBox.Text = "#. <artist> - <title>";
+            // 
+            // formatLabel
+            // 
+            this.formatLabel.AutoSize = true;
+            this.formatLabel.Location = new System.Drawing.Point(6, 285);
+            this.formatLabel.Name = "formatLabel";
+            this.formatLabel.Size = new System.Drawing.Size(42, 13);
+            this.formatLabel.TabIndex = 1;
+            this.formatLabel.Text = "Format:";
+            // 
             // Main
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -274,7 +355,6 @@
             this.MainMenuStrip = this.menuStrip;
             this.Name = "Main";
             this.Text = "Gumshoe Music";
-            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.Main_FormClosed);
             ((System.ComponentModel.ISupportInitialize)(this.musicObjectListView)).EndInit();
             this.tabControl.ResumeLayout(false);
             this.musicTabPage.ResumeLayout(false);
@@ -285,6 +365,9 @@
             this.menuStrip.ResumeLayout(false);
             this.menuStrip.PerformLayout();
             this.notifyContextMenu.ResumeLayout(false);
+            this.tagTabPage.ResumeLayout(false);
+            this.tagTabPage.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.objectListView1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -314,6 +397,13 @@
         private System.Windows.Forms.NotifyIcon notifyIcon;
         private System.Windows.Forms.ContextMenuStrip notifyContextMenu;
         private System.Windows.Forms.ToolStripMenuItem exitToolStripMenuItem;
+        private System.Windows.Forms.TabPage tagTabPage;
+        private BrightIdeasSoftware.ObjectListView objectListView1;
+        private BrightIdeasSoftware.OLVColumn olvColumn1;
+        private BrightIdeasSoftware.OLVColumn olvColumn2;
+        private BrightIdeasSoftware.OLVColumn olvColumn3;
+        private System.Windows.Forms.Label formatLabel;
+        private System.Windows.Forms.TextBox formatTextBox;
     }
 }
 
