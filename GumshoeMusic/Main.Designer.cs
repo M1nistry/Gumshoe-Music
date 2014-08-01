@@ -39,11 +39,17 @@
             this.tabControl = new System.Windows.Forms.TabControl();
             this.musicTabPage = new System.Windows.Forms.TabPage();
             this.syncTabPage = new System.Windows.Forms.TabPage();
+            this.objectListView1 = new BrightIdeasSoftware.ObjectListView();
+            this.olvColumn1 = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
+            this.olvColumn2 = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
+            this.olvColumn3 = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
             this.syncStatus = new System.Windows.Forms.Label();
+            this.tagTabPage = new System.Windows.Forms.TabPage();
+            this.formatLabel = new System.Windows.Forms.Label();
+            this.formatTextBox = new System.Windows.Forms.TextBox();
             this.statusStrip = new System.Windows.Forms.StatusStrip();
             this.toolStripStatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
             this.toolStripSpacer = new System.Windows.Forms.ToolStripStatusLabel();
-            this.toolStripProgressBar = new System.Windows.Forms.ToolStripProgressBar();
             this.menuStrip = new System.Windows.Forms.MenuStrip();
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripTools = new System.Windows.Forms.ToolStripMenuItem();
@@ -52,22 +58,15 @@
             this.notifyIcon = new System.Windows.Forms.NotifyIcon(this.components);
             this.notifyContextMenu = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.tagTabPage = new System.Windows.Forms.TabPage();
-            this.objectListView1 = new BrightIdeasSoftware.ObjectListView();
-            this.olvColumn1 = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
-            this.olvColumn2 = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
-            this.olvColumn3 = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
-            this.formatTextBox = new System.Windows.Forms.TextBox();
-            this.formatLabel = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.musicObjectListView)).BeginInit();
             this.tabControl.SuspendLayout();
             this.musicTabPage.SuspendLayout();
             this.syncTabPage.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.objectListView1)).BeginInit();
+            this.tagTabPage.SuspendLayout();
             this.statusStrip.SuspendLayout();
             this.menuStrip.SuspendLayout();
             this.notifyContextMenu.SuspendLayout();
-            this.tagTabPage.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.objectListView1)).BeginInit();
             this.SuspendLayout();
             // 
             // deviceLabel
@@ -144,6 +143,7 @@
             this.tabControl.SelectedIndex = 0;
             this.tabControl.Size = new System.Drawing.Size(302, 431);
             this.tabControl.TabIndex = 3;
+            this.tabControl.SelectedIndexChanged += new System.EventHandler(this.tabControl_SelectedIndexChanged);
             // 
             // musicTabPage
             // 
@@ -167,120 +167,6 @@
             this.syncTabPage.TabIndex = 1;
             this.syncTabPage.Text = "Sync";
             this.syncTabPage.UseVisualStyleBackColor = true;
-            // 
-            // syncStatus
-            // 
-            this.syncStatus.AutoSize = true;
-            this.syncStatus.Location = new System.Drawing.Point(47, 16);
-            this.syncStatus.Name = "syncStatus";
-            this.syncStatus.Size = new System.Drawing.Size(191, 13);
-            this.syncStatus.TabIndex = 0;
-            this.syncStatus.Text = "There are {0} files waiting to be synced";
-            // 
-            // statusStrip
-            // 
-            this.statusStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.toolStripStatusLabel,
-            this.toolStripSpacer,
-            this.toolStripProgressBar});
-            this.statusStrip.Location = new System.Drawing.Point(0, 499);
-            this.statusStrip.Name = "statusStrip";
-            this.statusStrip.Size = new System.Drawing.Size(326, 22);
-            this.statusStrip.SizingGrip = false;
-            this.statusStrip.TabIndex = 4;
-            this.statusStrip.Text = "statusStrip";
-            // 
-            // toolStripStatusLabel
-            // 
-            this.toolStripStatusLabel.Name = "toolStripStatusLabel";
-            this.toolStripStatusLabel.Size = new System.Drawing.Size(42, 17);
-            this.toolStripStatusLabel.Text = "Status:";
-            // 
-            // toolStripSpacer
-            // 
-            this.toolStripSpacer.Name = "toolStripSpacer";
-            this.toolStripSpacer.Size = new System.Drawing.Size(167, 17);
-            this.toolStripSpacer.Spring = true;
-            // 
-            // toolStripProgressBar
-            // 
-            this.toolStripProgressBar.Name = "toolStripProgressBar";
-            this.toolStripProgressBar.Size = new System.Drawing.Size(100, 16);
-            // 
-            // menuStrip
-            // 
-            this.menuStrip.BackColor = System.Drawing.Color.Transparent;
-            this.menuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.fileToolStripMenuItem,
-            this.toolStripTools});
-            this.menuStrip.Location = new System.Drawing.Point(0, 0);
-            this.menuStrip.Name = "menuStrip";
-            this.menuStrip.Size = new System.Drawing.Size(326, 24);
-            this.menuStrip.TabIndex = 5;
-            this.menuStrip.Text = "menuStrip1";
-            // 
-            // fileToolStripMenuItem
-            // 
-            this.fileToolStripMenuItem.Name = "fileToolStripMenuItem";
-            this.fileToolStripMenuItem.Size = new System.Drawing.Size(37, 20);
-            this.fileToolStripMenuItem.Text = "File";
-            // 
-            // toolStripTools
-            // 
-            this.toolStripTools.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.settingsToolStripMenuItem});
-            this.toolStripTools.Name = "toolStripTools";
-            this.toolStripTools.Size = new System.Drawing.Size(48, 20);
-            this.toolStripTools.Text = "Tools";
-            // 
-            // settingsToolStripMenuItem
-            // 
-            this.settingsToolStripMenuItem.Name = "settingsToolStripMenuItem";
-            this.settingsToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.settingsToolStripMenuItem.Text = "Settings";
-            this.settingsToolStripMenuItem.Click += new System.EventHandler(this.settingsToolStripMenuItem_Click);
-            // 
-            // refreshDevice
-            // 
-            this.refreshDevice.Location = new System.Drawing.Point(285, 25);
-            this.refreshDevice.Name = "refreshDevice";
-            this.refreshDevice.Size = new System.Drawing.Size(24, 21);
-            this.refreshDevice.TabIndex = 6;
-            this.refreshDevice.Text = "↻";
-            this.refreshDevice.UseVisualStyleBackColor = true;
-            this.refreshDevice.Click += new System.EventHandler(this.refreshDevice_Click);
-            // 
-            // notifyIcon
-            // 
-            this.notifyIcon.ContextMenuStrip = this.notifyContextMenu;
-            this.notifyIcon.Icon = ((System.Drawing.Icon)(resources.GetObject("notifyIcon.Icon")));
-            this.notifyIcon.Text = "Gumshoe Music";
-            this.notifyIcon.Visible = true;
-            // 
-            // notifyContextMenu
-            // 
-            this.notifyContextMenu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.exitToolStripMenuItem});
-            this.notifyContextMenu.Name = "notifyContextMenu";
-            this.notifyContextMenu.Size = new System.Drawing.Size(93, 26);
-            // 
-            // exitToolStripMenuItem
-            // 
-            this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
-            this.exitToolStripMenuItem.Size = new System.Drawing.Size(92, 22);
-            this.exitToolStripMenuItem.Text = "Exit";
-            // 
-            // tagTabPage
-            // 
-            this.tagTabPage.Controls.Add(this.formatLabel);
-            this.tagTabPage.Controls.Add(this.formatTextBox);
-            this.tagTabPage.Location = new System.Drawing.Point(4, 22);
-            this.tagTabPage.Name = "tagTabPage";
-            this.tagTabPage.Padding = new System.Windows.Forms.Padding(3);
-            this.tagTabPage.Size = new System.Drawing.Size(294, 405);
-            this.tagTabPage.TabIndex = 2;
-            this.tagTabPage.Text = "Tags";
-            this.tagTabPage.UseVisualStyleBackColor = true;
             // 
             // objectListView1
             // 
@@ -323,13 +209,26 @@
             this.olvColumn3.Text = "Album";
             this.olvColumn3.Width = 0;
             // 
-            // formatTextBox
+            // syncStatus
             // 
-            this.formatTextBox.Location = new System.Drawing.Point(49, 282);
-            this.formatTextBox.Name = "formatTextBox";
-            this.formatTextBox.Size = new System.Drawing.Size(146, 20);
-            this.formatTextBox.TabIndex = 0;
-            this.formatTextBox.Text = "#. <artist> - <title>";
+            this.syncStatus.AutoSize = true;
+            this.syncStatus.Location = new System.Drawing.Point(47, 16);
+            this.syncStatus.Name = "syncStatus";
+            this.syncStatus.Size = new System.Drawing.Size(191, 13);
+            this.syncStatus.TabIndex = 0;
+            this.syncStatus.Text = "There are {0} files waiting to be synced";
+            // 
+            // tagTabPage
+            // 
+            this.tagTabPage.Controls.Add(this.formatLabel);
+            this.tagTabPage.Controls.Add(this.formatTextBox);
+            this.tagTabPage.Location = new System.Drawing.Point(4, 22);
+            this.tagTabPage.Name = "tagTabPage";
+            this.tagTabPage.Padding = new System.Windows.Forms.Padding(3);
+            this.tagTabPage.Size = new System.Drawing.Size(294, 405);
+            this.tagTabPage.TabIndex = 2;
+            this.tagTabPage.Text = "Tags";
+            this.tagTabPage.UseVisualStyleBackColor = true;
             // 
             // formatLabel
             // 
@@ -339,6 +238,101 @@
             this.formatLabel.Size = new System.Drawing.Size(42, 13);
             this.formatLabel.TabIndex = 1;
             this.formatLabel.Text = "Format:";
+            // 
+            // formatTextBox
+            // 
+            this.formatTextBox.Location = new System.Drawing.Point(49, 282);
+            this.formatTextBox.Name = "formatTextBox";
+            this.formatTextBox.Size = new System.Drawing.Size(146, 20);
+            this.formatTextBox.TabIndex = 0;
+            this.formatTextBox.Text = "#. <artist> - <title>";
+            // 
+            // statusStrip
+            // 
+            this.statusStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toolStripStatusLabel,
+            this.toolStripSpacer});
+            this.statusStrip.Location = new System.Drawing.Point(0, 499);
+            this.statusStrip.Name = "statusStrip";
+            this.statusStrip.Size = new System.Drawing.Size(326, 22);
+            this.statusStrip.SizingGrip = false;
+            this.statusStrip.TabIndex = 4;
+            this.statusStrip.Text = "statusStrip";
+            // 
+            // toolStripStatusLabel
+            // 
+            this.toolStripStatusLabel.Name = "toolStripStatusLabel";
+            this.toolStripStatusLabel.Size = new System.Drawing.Size(42, 17);
+            this.toolStripStatusLabel.Text = "Status:";
+            // 
+            // toolStripSpacer
+            // 
+            this.toolStripSpacer.Name = "toolStripSpacer";
+            this.toolStripSpacer.Size = new System.Drawing.Size(269, 17);
+            this.toolStripSpacer.Spring = true;
+            // 
+            // menuStrip
+            // 
+            this.menuStrip.BackColor = System.Drawing.Color.Transparent;
+            this.menuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.fileToolStripMenuItem,
+            this.toolStripTools});
+            this.menuStrip.Location = new System.Drawing.Point(0, 0);
+            this.menuStrip.Name = "menuStrip";
+            this.menuStrip.Size = new System.Drawing.Size(326, 24);
+            this.menuStrip.TabIndex = 5;
+            this.menuStrip.Text = "menuStrip1";
+            // 
+            // fileToolStripMenuItem
+            // 
+            this.fileToolStripMenuItem.Name = "fileToolStripMenuItem";
+            this.fileToolStripMenuItem.Size = new System.Drawing.Size(37, 20);
+            this.fileToolStripMenuItem.Text = "File";
+            // 
+            // toolStripTools
+            // 
+            this.toolStripTools.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.settingsToolStripMenuItem});
+            this.toolStripTools.Name = "toolStripTools";
+            this.toolStripTools.Size = new System.Drawing.Size(48, 20);
+            this.toolStripTools.Text = "Tools";
+            // 
+            // settingsToolStripMenuItem
+            // 
+            this.settingsToolStripMenuItem.Name = "settingsToolStripMenuItem";
+            this.settingsToolStripMenuItem.Size = new System.Drawing.Size(116, 22);
+            this.settingsToolStripMenuItem.Text = "Settings";
+            this.settingsToolStripMenuItem.Click += new System.EventHandler(this.settingsToolStripMenuItem_Click);
+            // 
+            // refreshDevice
+            // 
+            this.refreshDevice.Location = new System.Drawing.Point(285, 25);
+            this.refreshDevice.Name = "refreshDevice";
+            this.refreshDevice.Size = new System.Drawing.Size(24, 21);
+            this.refreshDevice.TabIndex = 6;
+            this.refreshDevice.Text = "↻";
+            this.refreshDevice.UseVisualStyleBackColor = true;
+            this.refreshDevice.Click += new System.EventHandler(this.refreshDevice_Click);
+            // 
+            // notifyIcon
+            // 
+            this.notifyIcon.ContextMenuStrip = this.notifyContextMenu;
+            this.notifyIcon.Icon = ((System.Drawing.Icon)(resources.GetObject("notifyIcon.Icon")));
+            this.notifyIcon.Text = "Gumshoe Music";
+            this.notifyIcon.Visible = true;
+            // 
+            // notifyContextMenu
+            // 
+            this.notifyContextMenu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.exitToolStripMenuItem});
+            this.notifyContextMenu.Name = "notifyContextMenu";
+            this.notifyContextMenu.Size = new System.Drawing.Size(93, 26);
+            // 
+            // exitToolStripMenuItem
+            // 
+            this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
+            this.exitToolStripMenuItem.Size = new System.Drawing.Size(92, 22);
+            this.exitToolStripMenuItem.Text = "Exit";
             // 
             // Main
             // 
@@ -360,14 +354,14 @@
             this.musicTabPage.ResumeLayout(false);
             this.syncTabPage.ResumeLayout(false);
             this.syncTabPage.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.objectListView1)).EndInit();
+            this.tagTabPage.ResumeLayout(false);
+            this.tagTabPage.PerformLayout();
             this.statusStrip.ResumeLayout(false);
             this.statusStrip.PerformLayout();
             this.menuStrip.ResumeLayout(false);
             this.menuStrip.PerformLayout();
             this.notifyContextMenu.ResumeLayout(false);
-            this.tagTabPage.ResumeLayout(false);
-            this.tagTabPage.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.objectListView1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -384,7 +378,6 @@
         private System.Windows.Forms.StatusStrip statusStrip;
         private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel;
         private System.Windows.Forms.ToolStripStatusLabel toolStripSpacer;
-        private System.Windows.Forms.ToolStripProgressBar toolStripProgressBar;
         private System.Windows.Forms.MenuStrip menuStrip;
         private System.Windows.Forms.ToolStripMenuItem fileToolStripMenuItem;
         private System.Windows.Forms.Button refreshDevice;

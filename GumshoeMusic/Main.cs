@@ -29,8 +29,8 @@ namespace GumshoeMusic
         public void AddSync()
         {
             var syncDictionary = ReadDictionary();
-
             WriteDictionary(syncDictionary);
+            MessageBox.Show(@"Hello World");
         }
 
         public bool WriteDictionary(Dictionary<string, string> dictionary)
@@ -153,6 +153,17 @@ namespace GumshoeMusic
                 _settings.FormClosed += (o, ea) => _settings = null;
                 _settings.Show();
 
+            }
+        }
+
+        private void tabControl_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (tabControl.SelectedTab != syncTabPage) return;
+
+            var syncDictionary = ReadDictionary();
+            foreach (var entry in syncDictionary)
+            {
+                
             }
         }
     }

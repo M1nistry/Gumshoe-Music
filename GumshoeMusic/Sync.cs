@@ -12,7 +12,7 @@ namespace GumshoeMusic
 
     public class Sync : SharpContextMenu
     {
-        private Main _main = Main.GetSingleton();
+        private Main _main;
         protected override bool CanShowMenu()
         {
             return true;
@@ -24,7 +24,7 @@ namespace GumshoeMusic
             var menu = new ContextMenuStrip();
             var syncItem = new ToolStripMenuItem
             {
-                Text = "Add to sync",
+                Text = @"Add to sync",
                 Image = Resources.Gumshoe.ToBitmap()
             };
 
