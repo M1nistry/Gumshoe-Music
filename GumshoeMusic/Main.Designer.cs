@@ -47,9 +47,6 @@
             this.tagTabPage = new System.Windows.Forms.TabPage();
             this.formatLabel = new System.Windows.Forms.Label();
             this.formatTextBox = new System.Windows.Forms.TextBox();
-            this.statusStrip = new System.Windows.Forms.StatusStrip();
-            this.toolStripStatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
-            this.toolStripSpacer = new System.Windows.Forms.ToolStripStatusLabel();
             this.menuStrip = new System.Windows.Forms.MenuStrip();
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripTools = new System.Windows.Forms.ToolStripMenuItem();
@@ -58,13 +55,15 @@
             this.notifyIcon = new System.Windows.Forms.NotifyIcon(this.components);
             this.notifyContextMenu = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.populateBGW = new System.ComponentModel.BackgroundWorker();
+            this.textDeviceInfo = new System.Windows.Forms.TextBox();
+            this.extendedStatusStrip = new GumshoeMusic.ExtendedStatusStrip();
             ((System.ComponentModel.ISupportInitialize)(this.musicObjectListView)).BeginInit();
             this.tabControl.SuspendLayout();
             this.musicTabPage.SuspendLayout();
             this.syncTabPage.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.objectListView1)).BeginInit();
             this.tagTabPage.SuspendLayout();
-            this.statusStrip.SuspendLayout();
             this.menuStrip.SuspendLayout();
             this.notifyContextMenu.SuspendLayout();
             this.SuspendLayout();
@@ -82,10 +81,11 @@
             // 
             this.deviceComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.deviceComboBox.FormattingEnabled = true;
-            this.deviceComboBox.Location = new System.Drawing.Point(59, 25);
+            this.deviceComboBox.Location = new System.Drawing.Point(315, 25);
             this.deviceComboBox.Name = "deviceComboBox";
-            this.deviceComboBox.Size = new System.Drawing.Size(220, 21);
+            this.deviceComboBox.Size = new System.Drawing.Size(10, 21);
             this.deviceComboBox.TabIndex = 1;
+            this.deviceComboBox.Visible = false;
             this.deviceComboBox.SelectedIndexChanged += new System.EventHandler(this.deviceComboBox_SelectedIndexChanged);
             // 
             // musicObjectListView
@@ -93,7 +93,6 @@
             this.musicObjectListView.AllColumns.Add(this.olvTitle);
             this.musicObjectListView.AllColumns.Add(this.olvArtist);
             this.musicObjectListView.AllColumns.Add(this.olvAlbum);
-            this.musicObjectListView.CheckBoxes = true;
             this.musicObjectListView.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.olvTitle,
             this.olvArtist,
@@ -101,7 +100,7 @@
             this.musicObjectListView.Dock = System.Windows.Forms.DockStyle.Fill;
             this.musicObjectListView.Location = new System.Drawing.Point(3, 3);
             this.musicObjectListView.Name = "musicObjectListView";
-            this.musicObjectListView.Size = new System.Drawing.Size(288, 399);
+            this.musicObjectListView.Size = new System.Drawing.Size(288, 409);
             this.musicObjectListView.TabIndex = 2;
             this.musicObjectListView.UseCompatibleStateImageBehavior = false;
             this.musicObjectListView.View = System.Windows.Forms.View.Details;
@@ -141,7 +140,7 @@
             this.tabControl.Location = new System.Drawing.Point(12, 52);
             this.tabControl.Name = "tabControl";
             this.tabControl.SelectedIndex = 0;
-            this.tabControl.Size = new System.Drawing.Size(302, 431);
+            this.tabControl.Size = new System.Drawing.Size(302, 441);
             this.tabControl.TabIndex = 3;
             this.tabControl.SelectedIndexChanged += new System.EventHandler(this.tabControl_SelectedIndexChanged);
             // 
@@ -151,7 +150,7 @@
             this.musicTabPage.Location = new System.Drawing.Point(4, 22);
             this.musicTabPage.Name = "musicTabPage";
             this.musicTabPage.Padding = new System.Windows.Forms.Padding(3);
-            this.musicTabPage.Size = new System.Drawing.Size(294, 405);
+            this.musicTabPage.Size = new System.Drawing.Size(294, 415);
             this.musicTabPage.TabIndex = 0;
             this.musicTabPage.Text = "Music";
             this.musicTabPage.UseVisualStyleBackColor = true;
@@ -247,30 +246,6 @@
             this.formatTextBox.TabIndex = 0;
             this.formatTextBox.Text = "#. <artist> - <title>";
             // 
-            // statusStrip
-            // 
-            this.statusStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.toolStripStatusLabel,
-            this.toolStripSpacer});
-            this.statusStrip.Location = new System.Drawing.Point(0, 499);
-            this.statusStrip.Name = "statusStrip";
-            this.statusStrip.Size = new System.Drawing.Size(326, 22);
-            this.statusStrip.SizingGrip = false;
-            this.statusStrip.TabIndex = 4;
-            this.statusStrip.Text = "statusStrip";
-            // 
-            // toolStripStatusLabel
-            // 
-            this.toolStripStatusLabel.Name = "toolStripStatusLabel";
-            this.toolStripStatusLabel.Size = new System.Drawing.Size(42, 17);
-            this.toolStripStatusLabel.Text = "Status:";
-            // 
-            // toolStripSpacer
-            // 
-            this.toolStripSpacer.Name = "toolStripSpacer";
-            this.toolStripSpacer.Size = new System.Drawing.Size(269, 17);
-            this.toolStripSpacer.Spring = true;
-            // 
             // menuStrip
             // 
             this.menuStrip.BackColor = System.Drawing.Color.Transparent;
@@ -312,6 +287,7 @@
             this.refreshDevice.TabIndex = 6;
             this.refreshDevice.Text = "↻";
             this.refreshDevice.UseVisualStyleBackColor = true;
+            this.refreshDevice.Visible = false;
             this.refreshDevice.Click += new System.EventHandler(this.refreshDevice_Click);
             // 
             // notifyIcon
@@ -334,13 +310,37 @@
             this.exitToolStripMenuItem.Size = new System.Drawing.Size(92, 22);
             this.exitToolStripMenuItem.Text = "Exit";
             // 
+            // populateBGW
+            // 
+            this.populateBGW.DoWork += new System.ComponentModel.DoWorkEventHandler(this.populateBGW_DoWork);
+            this.populateBGW.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.populateBGW_RunWorkerCompleted);
+            // 
+            // textDeviceInfo
+            // 
+            this.textDeviceInfo.Location = new System.Drawing.Point(59, 26);
+            this.textDeviceInfo.Name = "textDeviceInfo";
+            this.textDeviceInfo.ReadOnly = true;
+            this.textDeviceInfo.Size = new System.Drawing.Size(220, 20);
+            this.textDeviceInfo.TabIndex = 7;
+            // 
+            // extendedStatusStrip
+            // 
+            this.extendedStatusStrip.BackColor = System.Drawing.Color.Transparent;
+            this.extendedStatusStrip.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.extendedStatusStrip.Location = new System.Drawing.Point(0, 499);
+            this.extendedStatusStrip.Name = "extendedStatusStrip";
+            this.extendedStatusStrip.Size = new System.Drawing.Size(326, 22);
+            this.extendedStatusStrip.TabIndex = 8;
+            this.extendedStatusStrip.Timestamps = false;
+            // 
             // Main
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(326, 521);
+            this.Controls.Add(this.extendedStatusStrip);
+            this.Controls.Add(this.textDeviceInfo);
             this.Controls.Add(this.refreshDevice);
-            this.Controls.Add(this.statusStrip);
             this.Controls.Add(this.menuStrip);
             this.Controls.Add(this.tabControl);
             this.Controls.Add(this.deviceComboBox);
@@ -348,7 +348,7 @@
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MainMenuStrip = this.menuStrip;
             this.Name = "Main";
-            this.Text = "Gumshoe Music";
+            this.Text = "Gumshoe Music | 0.1";
             ((System.ComponentModel.ISupportInitialize)(this.musicObjectListView)).EndInit();
             this.tabControl.ResumeLayout(false);
             this.musicTabPage.ResumeLayout(false);
@@ -357,8 +357,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.objectListView1)).EndInit();
             this.tagTabPage.ResumeLayout(false);
             this.tagTabPage.PerformLayout();
-            this.statusStrip.ResumeLayout(false);
-            this.statusStrip.PerformLayout();
             this.menuStrip.ResumeLayout(false);
             this.menuStrip.PerformLayout();
             this.notifyContextMenu.ResumeLayout(false);
@@ -375,9 +373,6 @@
         private System.Windows.Forms.TabControl tabControl;
         private System.Windows.Forms.TabPage musicTabPage;
         private System.Windows.Forms.TabPage syncTabPage;
-        private System.Windows.Forms.StatusStrip statusStrip;
-        private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel;
-        private System.Windows.Forms.ToolStripStatusLabel toolStripSpacer;
         private System.Windows.Forms.MenuStrip menuStrip;
         private System.Windows.Forms.ToolStripMenuItem fileToolStripMenuItem;
         private System.Windows.Forms.Button refreshDevice;
@@ -397,6 +392,9 @@
         private BrightIdeasSoftware.OLVColumn olvColumn3;
         private System.Windows.Forms.Label formatLabel;
         private System.Windows.Forms.TextBox formatTextBox;
+        private System.ComponentModel.BackgroundWorker populateBGW;
+        private System.Windows.Forms.TextBox textDeviceInfo;
+        private ExtendedStatusStrip extendedStatusStrip;
     }
 }
 

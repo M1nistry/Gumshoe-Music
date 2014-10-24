@@ -5,8 +5,14 @@
     <Setting Name="folderName" Type="System.String" Scope="User">
       <Value Profile="(Default)">Music2</Value>
     </Setting>
-    <Setting Name="deviceCollection" Type="System.String" Scope="User">
-      <Value Profile="(Default)" />
+    <Setting Name="defaultDevice" Type="System.String" Scope="User">
+      <Value Profile="(Default)">OnePlus</Value>
+    </Setting>
+    <Setting Name="deviceAddress" Type="System.String" Scope="User">
+      <Value Profile="(Default)">192.168.1.6:2221</Value>
+    </Setting>
+    <Setting Name="deviceName" Type="System.String" Scope="User">
+      <Value Profile="(Default)">OnePlus</Value>
     </Setting>
   </Settings>
 </SettingsFile>
